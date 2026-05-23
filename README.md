@@ -39,6 +39,10 @@ This module configures Item Piles with Black Flag–specific data, including:
 
 After installation, Item Piles recognizes the Black Flag system automatically — no manual configuration required.
 
+## Known Issues
+
+- **Chat card rendering error with Black Flag v2.0.074+**: When rolling abilities or attacks, the chat card appears but triggers a console error: `html.find is not a function` in `ChatAPI._renderChatMessage` (chat-api.js:56). This is a conflict between item-piles 3.3.1's `renderChatMessageHTML` hook and Black Flag's chat message rendering. The chat card displays correctly; the error is cosmetic but needs investigation. Root cause likely in the `helpers.js#renderChatMessageHTML` override — `html` parameter type expectations differ between 5E and BF v13.
+
 ## Credits
 
 - **D&D 5E compatibility module:** [fantasycalendar/FoundryVTT-ItemPilesDnD5e](https://github.com/fantasycalendar/FoundryVTT-ItemPilesDND5e) — created by Wasp / Fantasy Computerworks, used as reference
