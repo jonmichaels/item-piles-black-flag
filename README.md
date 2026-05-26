@@ -4,7 +4,7 @@
 
 [![Foundry VTT](https://img.shields.io/badge/Foundry-v13-orange)](https://foundryvtt.com)
 [![Black Flag](https://img.shields.io/badge/System-Black%20Flag%20%2F%20ToV-blue)](https://github.com/koboldpress/black-flag)
-[![Version](https://img.shields.io/badge/Version-0.1.0-green)](https://github.com/jonmichaels/item-piles-black-flag/releases)
+[![Version](https://img.shields.io/badge/Version-0.1.2-green)](https://github.com/jonmichaels/item-piles-black-flag/releases)
 
 Adds **Black Flag Roleplaying (Tales of the Valiant)** system support for the [Item Piles](https://foundryvtt.com/packages/item-piles) module — enabling loot piles, merchants, vaults, and currency handling for the Black Flag system.
 
@@ -38,10 +38,6 @@ This module configures Item Piles with Black Flag–specific data, including:
 | **Item transformation** | Strips attunement flags when items enter piles |
 
 After installation, Item Piles recognizes the Black Flag system automatically — no manual configuration required.
-
-## Known Issues
-
-- **Chat card rendering error with Black Flag v2.0.074+**: When rolling abilities or attacks, the chat card appears but triggers a console error: `html.find is not a function` in `ChatAPI._renderChatMessage` (chat-api.js:56). This is a jQuery vs native DOM compatibility issue between Item Piles 3.3.1 and Black Flag v13. **Fixed in v0.1.1** — the `SYSTEM_HOOKS` now polyfills `.find` and `.closest` on native DOM elements before the hook processes. Credit: Hephaestus (AI agent via Hermes Agent).
 
 ## Credits
 
