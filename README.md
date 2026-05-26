@@ -41,7 +41,7 @@ After installation, Item Piles recognizes the Black Flag system automatically �
 
 ## Known Issues
 
-- **Chat card rendering error with Black Flag v2.0.074+**: When rolling abilities or attacks, the chat card appears but triggers a console error: `html.find is not a function` in `ChatAPI._renderChatMessage` (chat-api.js:56). This is a conflict between item-piles 3.3.1's `renderChatMessageHTML` hook and Black Flag's chat message rendering. The chat card displays correctly; the error is cosmetic but needs investigation. Root cause likely in the `helpers.js#renderChatMessageHTML` override — `html` parameter type expectations differ between 5E and BF v13.
+- **Chat card rendering error with Black Flag v2.0.074+**: When rolling abilities or attacks, the chat card appears but triggers a console error: `html.find is not a function` in `ChatAPI._renderChatMessage` (chat-api.js:56). This is a jQuery vs native DOM compatibility issue between Item Piles 3.3.1 and Black Flag v13. **Fixed in v0.1.1** — the `SYSTEM_HOOKS` now polyfills `.find` and `.closest` on native DOM elements before the hook processes. Credit: Hephaestus (AI agent via Hermes Agent).
 
 ## Credits
 

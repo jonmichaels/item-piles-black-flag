@@ -1,4 +1,4 @@
-Hooks.once("item-piles-ready", async () => {
+async function registerBlackFlagIntegration() {
     console.log("Item Piles: Black Flag | Registering system integration...");
 
     // ─── Item filters (non-physical BF item types) ───
@@ -36,7 +36,7 @@ Hooks.once("item-piles-ready", async () => {
 
     // ─── Integration data (applies to all users via SUPPORTED_SYSTEMS) ───
     const integrationData = {
-        VERSION: "0.1.0",
+"VERSION": "0.1.2",
         ACTOR_CLASS_TYPE: "pc",
         ITEM_CLASS_LOOT_TYPE: "sundry",
         ITEM_CLASS_WEAPON_TYPE: "weapon",
@@ -112,7 +112,19 @@ Hooks.once("item-piles-ready", async () => {
             { path: "system.rarity", value: "uncommon",   styling: { "box-shadow": "inset 0px 0px 7px 0px rgba(0,255,9,1)" } }
         ],
 
-        SYSTEM_HOOKS: () => {}
+        SYSTEM_HOOKS: () => {
+            // Foundry v13 passes native DOM elements in render hooks.
+            // Item Piles 3.3.1 expects jQuery .find() on the html parameter
+            // (chat-api.js:56 _renderChatMessage calls html.find(...)).
+            // Polyfill .find/.closest on the specific element before Item
+            // Piles' renderChatMessageHTML hook processes it.
+            Hooks.on("renderChatMessage", (_app, html, _context) => {
+                if (html && !html.find) {
+                    html.find = (sel) => $(html).find(sel);
+                    html.closest = (sel) => $(html).closest(sel);
+                }
+            });
+        }
     };
 
     // ─── Register integration (all users) ───
@@ -177,5 +189,23 @@ Hooks.once("item-piles-ready", async () => {
         }
     } catch (err) {
         console.error("Item Piles: Black Flag | Failed to persist settings:", err);
+    }
+}
+
+// jQuery polyfill for Foundry v13 native HTMLElement in renderChatMessageHTML
+// Item Piles 3.3.1 chat-api.js calls html.find() which requires jQuery.
+// Foundry v13 deprecated renderChatMessage → use renderChatMessageHTML instead.
+Hooks.once("init", () => {
+    Hooks.on("renderChatMessageHTML", (_app, html, _context) => {
+        if (html && !html.find) {
+            html.find = (sel) => $(html).find(sel);
+            html.closest = (sel) => $(html).closest(sel);
+        }
+    });
+
+    // Register Black Flag integration when Item Piles is ready
+    Hooks.once("item-piles-ready", registerBlackFlagIntegration);
+    if (game.itempiles) {
+        registerBlackFlagIntegration();
     }
 });
