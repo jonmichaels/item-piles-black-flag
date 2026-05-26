@@ -118,7 +118,7 @@ async function registerBlackFlagIntegration() {
             // (chat-api.js:56 _renderChatMessage calls html.find(...)).
             // Polyfill .find/.closest on the specific element before Item
             // Piles' renderChatMessageHTML hook processes it.
-            Hooks.on("renderChatMessage", (_app, html, _context) => {
+            Hooks.on("renderChatMessageHTML", (_app, html, _context) => {
                 if (html && !html.find) {
                     html.find = (sel) => $(html).find(sel);
                     html.closest = (sel) => $(html).closest(sel);
