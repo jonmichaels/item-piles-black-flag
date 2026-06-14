@@ -55,7 +55,7 @@ BF containers differ from dnd5e — container contents reference the container b
 
 ### Foundry v14 / Black Flag v3 handoff
 
-For v14 manual testing, the module is symlinked from `/home/jon/foundryuserdata14/Data/modules/item-piles-black-flag` to this repo. The v14 local stack uses Foundry 14 on port 30001 with Black Flag 3.0.075 and Item Piles 3.3.2 installed. After compatibility metadata changes, rebuild `module.zip` even though there is no JS build step.
+For v14 manual testing, the module is symlinked from `/home/jon/foundryuserdata14/Data/modules/item-piles-black-flag` to this repo. The v14 local stack uses Foundry 14 on port 30001 with Black Flag 3.0.075 and Item Piles 3.3.2 installed. After compatibility metadata changes, rebuild `module.zip` even though there is no JS build step. Never add `compatibility.maximum` to `module.json`; it breaks installs as soon as a newer Foundry/system/module version is released.
 
 ### Problem 1: `html.find is not a function` (Item Piles chat-api.js:56)
 
@@ -150,8 +150,8 @@ ChatMessage.create({ content: "test" })
 ## Dependencies
 
 - **Item Piles** v3.2.7+ (`fantasycalendar/FoundryVTT-ItemPiles`), verified with 3.3.2
-- **Black Flag** v2.0.0+ through v3.0.075 (system: `black-flag`)
-- **Foundry VTT** v13 through v14
+- **Black Flag** v2.0.0+ (verified with v3.0.075; no `maximum` cap in manifest)
+- **Foundry VTT** v13+ (verified with v14; no `maximum` cap in manifest)
 
 ## Reference
 
