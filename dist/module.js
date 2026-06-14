@@ -141,11 +141,6 @@ async function registerBlackFlagIntegration() {
     // SUPPORTED_SYSTEMS (populated by addSystemIntegration above).
     // The GM persists settings once; they're stored in the world DB for all users.
 
-    if (!game.user.isGM) {
-        console.log("Item Piles: Black Flag | Non-GM user, settings already persisted by GM");
-        return;
-    }
-
     const API = game.itempiles.API;
 
     async function persistSettings(currencies) {
@@ -163,33 +158,54 @@ async function registerBlackFlagIntegration() {
         }
     }
 
-    try {
-        if (currencyEntries.length > 0) {
-            await persistSettings(currencyEntries);
-            console.log("Item Piles: Black Flag | Settings persisted");
-        } else {
-            // Currencies don't have UUIDs yet — BF compendiums haven't loaded.
-            // Persist everything else now, register currencies when BF is ready.
-            await persistSettings(null);
-            console.log("Item Piles: Black Flag | Core settings persisted, waiting for BF currency registration...");
+    async function persistAllSettings() {
+        try {
+            if (currencyEntries.length > 0) {
+                await persistSettings(currencyEntries);
+                console.log("Item Piles: Black Flag | Settings persisted");
+            } else {
+                // Currencies don't have UUIDs yet — BF compendiums haven't loaded.
+                // Persist everything else now, register currencies when BF is ready.
+                await persistSettings(null);
+                console.log("Item Piles: Black Flag | Core settings persisted, waiting for BF currency registration...");
 
-            Hooks.once("blackFlag.registrationComplete", async () => {
-                const currencies = buildCurrencies();
-                if (currencies.length === 0) {
-                    console.warn("Item Piles: Black Flag | BF registration complete but still no currency UUIDs");
-                    return;
-                }
-                try {
-                    await API.setCurrencies(currencies);
-                    console.log(`Item Piles: Black Flag | ${currencies.length} currencies set (deferred)`);
-                } catch (err) {
-                    console.error("Item Piles: Black Flag | Deferred setCurrencies failed:", err);
-                }
-            });
+                Hooks.once("blackFlag.registrationComplete", async () => {
+                    const currencies = buildCurrencies();
+                    if (currencies.length === 0) {
+                        console.warn("Item Piles: Black Flag | BF registration complete but still no currency UUIDs");
+                        return;
+                    }
+                    try {
+                        await API.setCurrencies(currencies);
+                        console.log(`Item Piles: Black Flag | ${currencies.length} currencies set (deferred)`);
+                    } catch (err) {
+                        console.error("Item Piles: Black Flag | Deferred setCurrencies failed:", err);
+                    }
+                });
+            }
+        } catch (err) {
+            console.error("Item Piles: Black Flag | Failed to persist settings:", err);
         }
-    } catch (err) {
-        console.error("Item Piles: Black Flag | Failed to persist settings:", err);
     }
+
+    if (!game.user) {
+        console.log("Item Piles: Black Flag | User not ready, deferring GM settings persistence until ready hook");
+        Hooks.once("ready", () => {
+            if (!game.user?.isGM) {
+                console.log("Item Piles: Black Flag | Non-GM user, settings already persisted by GM");
+                return;
+            }
+            return persistAllSettings();
+        });
+        return;
+    }
+
+    if (!game.user.isGM) {
+        console.log("Item Piles: Black Flag | Non-GM user, settings already persisted by GM");
+        return;
+    }
+
+    await persistAllSettings();
 }
 
 // jQuery polyfill for Foundry v13 native HTMLElement in renderChatMessageHTML
