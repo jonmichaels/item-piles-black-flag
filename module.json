@@ -1,49 +1,50 @@
 {
-    "id": "item-piles-black-flag",
-    "title": "Item Piles: Black Flag / Tales of the Valiant",
-    "description": "Adds Black Flag Roleplaying / Tales of the Valiant system support for the Item Piles module",
-    "version": "0.1.2",
-    "authors": [
-        {
-            "name": "Jon Michaels",
-            "discord": "jonmichaels#9614",
-            "url": "https://github.com/jonmichaels"
+  "id": "item-piles-black-flag",
+  "title": "Item Piles: Black Flag / Tales of the Valiant",
+  "description": "Adds Black Flag Roleplaying / Tales of the Valiant system support for the Item Piles module",
+  "version": "0.1.2",
+  "authors": [
+    {
+      "name": "Jon Michaels",
+      "discord": "jonmichaels#9614",
+      "url": "https://github.com/jonmichaels",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "dist/module.js"
+  ],
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "relationships": {
+    "requires": [
+      {
+        "id": "item-piles",
+        "type": "module",
+        "manifest": "https://github.com/fantasycalendar/FoundryVTT-ItemPiles/releases/latest/download/module.json",
+        "compatibility": {
+          "minimum": "3.2.7",
+          "verified": "3.2.7"
         }
+      }
     ],
-    "esmodules": [
-        "dist/module.js"
-    ],
-    "compatibility": {
-        "minimum": "13",
-        "verified": "13",
-        "maximum": "14"
-    },
-    "relationships": {
-        "requires": [
-            {
-                "id": "item-piles",
-                "type": "module",
-                "manifest": "https://github.com/fantasycalendar/FoundryVTT-ItemPiles/releases/latest/download/module.json",
-                "compatibility": {
-                    "minimum": "3.2.7",
-                    "verified": "3.2.7"
-                }
-            }
-        ],
-        "systems": [
-            {
-                "id": "black-flag",
-                "type": "system",
-                "compatibility": {
-                    "minimum": "2.0.0",
-                    "verified": "2.0.074"
-                }
-            }
-        ]
-    },
-    "url": "https://github.com/jonmichaels/item-piles-black-flag",
-    "manifest": "https://github.com/jonmichaels/item-piles-black-flag/releases/latest/download/module.json",
-    "download": "https://github.com/jonmichaels/item-piles-black-flag/releases/latest/download/module.zip",
-    "license": "MIT",
-    "readme": "README.md"
+    "systems": [
+      {
+        "id": "black-flag",
+        "type": "system",
+        "compatibility": {
+          "minimum": "2.0.0",
+          "verified": "2.0.074"
+        }
+      }
+    ]
+  },
+  "url": "https://github.com/jonmichaels/item-piles-black-flag",
+  "manifest": "https://github.com/jonmichaels/item-piles-black-flag/releases/latest/download/module.json",
+  "download": "https://github.com/jonmichaels/item-piles-black-flag/releases/latest/download/module.zip",
+  "license": "MIT",
+  "readme": "README.md",
+  "flags": {}
 }
