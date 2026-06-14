@@ -2,9 +2,9 @@
 
 > **⚠️ Disclaimer:** This module was created by an AI coding agent (Hephaestus, via Hermes Agent) under the direction of Jon Michaels. While tested and functional, users should verify behavior in their own games before relying on it in critical sessions.
 
-[![Foundry VTT](https://img.shields.io/badge/Foundry-v13-orange)](https://foundryvtt.com)
+[![Foundry VTT](https://img.shields.io/badge/Foundry-v13%20%7C%20v14-orange)](https://foundryvtt.com)
 [![Black Flag](https://img.shields.io/badge/System-Black%20Flag%20%2F%20ToV-blue)](https://github.com/koboldpress/black-flag)
-[![Version](https://img.shields.io/badge/Version-0.1.2-green)](https://github.com/jonmichaels/item-piles-black-flag/releases)
+[![Version](https://img.shields.io/badge/Version-0.1.3-green)](https://github.com/jonmichaels/item-piles-black-flag/releases)
 
 Adds **Black Flag Roleplaying (Tales of the Valiant)** system support for the [Item Piles](https://foundryvtt.com/packages/item-piles) module — enabling loot piles, merchants, vaults, and currency handling for the Black Flag system.
 
@@ -20,9 +20,9 @@ Download the latest release zip and extract to `Data/modules/item-piles-black-fl
 
 ## Requirements
 
-- **Foundry VTT** v13+
-- **[Item Piles](https://foundryvtt.com/packages/item-piles)** v3.2.7+
-- **[Black Flag Roleplaying](https://foundryvtt.com/packages/black-flag)** (Tales of the Valiant) v2.0+
+- **Foundry VTT** v13–v14
+- **[Item Piles](https://foundryvtt.com/packages/item-piles)** v3.2.7+ (verified with v3.3.2)
+- **[Black Flag Roleplaying](https://foundryvtt.com/packages/black-flag)** (Tales of the Valiant) v2.0–v3.0.075
 
 ## How It Works
 

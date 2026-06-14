@@ -1,10 +1,10 @@
 # Item Piles: Black Flag / Tales of the Valiant
 
-Module that registers Black Flag system support with Item Piles (3.3.1+).
+Module that registers Black Flag system support with Item Piles (3.3.1+ / verified 3.3.2).
 
 **Repo:** `jonmichaels/item-piles-black-flag`
 **Module ID:** `item-piles-black-flag`
-**Current version:** 0.1.2
+**Current version:** 0.1.3
 
 ## Architecture
 
@@ -50,7 +50,12 @@ integration waits for `blackFlag.registrationComplete` hook and retries.
 BF containers differ from dnd5e — container contents reference the container by item ID
 (`item.system.container === id`) rather than being nested in `item.system.contents`.
 
-## Foundry v13 Compatibility — CRITICAL
+## Foundry v13/v14 Compatibility — CRITICAL
+
+
+### Foundry v14 / Black Flag v3 handoff
+
+For v14 manual testing, the module is symlinked from `/home/jon/foundryuserdata14/Data/modules/item-piles-black-flag` to this repo. The v14 local stack uses Foundry 14 on port 30001 with Black Flag 3.0.075 and Item Piles 3.3.2 installed. After compatibility metadata changes, rebuild `module.zip` even though there is no JS build step.
 
 ### Problem 1: `html.find is not a function` (Item Piles chat-api.js:56)
 
@@ -144,8 +149,9 @@ ChatMessage.create({ content: "test" })
 
 ## Dependencies
 
-- **Item Piles** v3.2.7+ (`fantasycalendar/FoundryVTT-ItemPiles`)
-- **Black Flag** v2.0.0+ (system: `black-flag`)
+- **Item Piles** v3.2.7+ (`fantasycalendar/FoundryVTT-ItemPiles`), verified with 3.3.2
+- **Black Flag** v2.0.0+ through v3.0.075 (system: `black-flag`)
+- **Foundry VTT** v13 through v14
 
 ## Reference
 

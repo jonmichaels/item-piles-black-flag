@@ -36,7 +36,7 @@ async function registerBlackFlagIntegration() {
 
     // ─── Integration data (applies to all users via SUPPORTED_SYSTEMS) ───
     const integrationData = {
-"VERSION": "0.1.2",
+"VERSION": "0.1.3",
         ACTOR_CLASS_TYPE: "pc",
         ITEM_CLASS_LOOT_TYPE: "sundry",
         ITEM_CLASS_WEAPON_TYPE: "weapon",
