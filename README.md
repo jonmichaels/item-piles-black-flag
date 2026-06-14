@@ -24,6 +24,10 @@ Download the latest release zip and extract to `Data/modules/item-piles-black-fl
 - **[Item Piles](https://foundryvtt.com/packages/item-piles)** v3.2.7+ (verified with v3.3.2)
 - **[Black Flag Roleplaying](https://foundryvtt.com/packages/black-flag)** (Tales of the Valiant) v2.0–v3.0.075
 
+## Compatibility Notes
+
+Foundry v14 / Black Flag v3 support is initial. The adapter registers Black Flag system data with Item Piles, but Item Piles core is still evolving for Foundry v14 and may emit Foundry v14 deprecation warnings unrelated to this adapter.
+
 ## How It Works
 
 This module configures Item Piles with Black Flag–specific data, including:
